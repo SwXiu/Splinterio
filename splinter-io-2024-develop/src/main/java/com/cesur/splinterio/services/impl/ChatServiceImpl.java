@@ -35,7 +35,7 @@ public class ChatServiceImpl implements ChatService {
 
     @Override
     public void addChat(String email, ChatDTO datos) {
-        Optional<Incidence> optionalEntity = incidenceRepository.findById(datos.getId());
+        Optional<Incidence> optionalEntity = incidenceRepository.findById(datos.getIdIncidence());
         Optional<User> user = userRepository.getUserByEmail(email);
         if(user.isPresent()){
             Chat chat = new Chat();
