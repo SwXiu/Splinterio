@@ -1,6 +1,8 @@
 package main.java.com.cesur.splinterio.services.impl;
 
+import java.lang.reflect.Array;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,6 +19,11 @@ import com.cesur.splinterio.services.ChatService;
 
 public class ChatServiceImpl implements ChatService {
 
+    private static Map<String, List<String>> map = new HashMap<>();
+
+    static {
+        map.put("ofimatica",Arrays.asList("¿1. Reiniciaste el programa?", "¿2. Reiniciaste el ordenador?"));
+    }
     @Autowired
     ChatRepository chatRepository;
 
@@ -41,9 +48,8 @@ public class ChatServiceImpl implements ChatService {
 
     @Override
     public String answerChat(String message) {
-        Map<String, List<String>> map = new HashMap<>();
         message  = message.toLowerCase();
-
+        
         for(Map.Entry<String, List<String>> responses : map.entrySet()) {
             String key = responses.getKey();
             List<String> value = responses.getValue();
